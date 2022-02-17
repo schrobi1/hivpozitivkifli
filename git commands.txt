@@ -1,0 +1,12 @@
+1 git pull - lekérés a (main)
+2 git branch <name> - ábranch létrehozása 
+3 git checkout <name> - 
+4 git add / git commit
+5 git checkout 
+6 git pull
+7 git merge <name>
+ 7/a, konflictus kezelés
+ 7/b, git add --all
+ 7/c, git merge -- 
+8 git push
+9 git branch -d <name>
