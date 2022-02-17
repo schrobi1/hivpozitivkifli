@@ -10,3 +10,4 @@
  7/c, git merge -- 
 8 git push
 9 git branch -d <name>
+szerkesztett
