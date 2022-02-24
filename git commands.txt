@@ -11,4 +11,4 @@
 8 git push
 9 git branch -d <name>
 szerkesztett
-róbert
+róbertasd
