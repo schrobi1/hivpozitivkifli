@@ -12,3 +12,4 @@
 9 git branch -d <name>
 szerkesztett
 róbertasd
+sdadsdssd
