@@ -4,12 +4,46 @@
 4 git add / git commit
 5 git checkout 
 6 git pull
-7 git merge <name>
+7 git merge <name> - mainen futtatva 
  7/a, konflictus kezelés
  7/b, git add --all
  7/c, git merge -- 
 8 git push
 9 git branch -d <name>
-szerkesztett
-róbertasd
-sdadsdssd
+ 
+kövi óra 
+
+1 git pull - lekérés a (main)
+2 git branch <name> - ábranch létrehozása 
+3 git checkout <name> - 
+4 munka (add / commit)
+5 git checkout main 
+6 git pull
+7 git checout name 
+8 git rebase main
+	kezelés
+	git add --all
+	git rebase --continue
+9 go to 5
+10 git checkout main
+11 git merge name
+12 git push
+13 git branch -d name
+gitt
+nem enyim:
+1, git pull
+2, git branch<name>
+3, git checkout<name>
+4, munka(add+commit)
+5, git checkout master/main
+6, git pull
+7, git checkout<name>
+8, git rebase master/main
+	8a, kezelés
+	8b, git add --all
+	8c, git rebase --continue
+9, 5. lépéstől újra az egész, megnéézni hogsy volt e változás ha  uptodate akkor 10es lépés, ha volt változás akkor rebase
+10, git checkout master/main
+11, git merge <name>
+12, git push
+13, git branch -d <name>
