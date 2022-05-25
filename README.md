@@ -1,6 +1,3 @@
-# hivpozitivkifli
-nem
-
 teszt szerver: https://krisz768.hu/test_server5
 
 
