@@ -1,5 +1,8 @@
 teszt szerver: https://krisz768.hu/test_server5
-
+Tesztszerver fájlok (uploadhoz,stb):
+  ftp: ftp://krisz768.hu
+  username: TempUser1
+  passwword: HIVPassword
 
 Frontendhez:
 
