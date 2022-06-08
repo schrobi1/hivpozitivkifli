@@ -35,7 +35,7 @@
                 $response['error'] = false;
                 $response['data'] = "Sikeres bejelentkezés!";
                 $_SESSION["LoggedIn"] = true;
-                $_SESSION["User"] = $_POST['username'];
+                $_SESSION["User"] = $logindata['username'];
             }
         }
     }
