@@ -45,7 +45,7 @@
 		}
 
 		function GetTopics(){
-			$stmt = $this->con->prepare("SELECT `topicName` FROM `news` WHERE 1 GROUP BY `topicName`;");
+			$stmt = $this->con->prepare("SELECT `topicName` FROM `news` WHERE 1 GROUP BY `topicName` ORDER BY `id` DESC LIMIT 4;");
 			$stmt->execute();
 			$array = $stmt->get_result();
 			$dbdata = array();
