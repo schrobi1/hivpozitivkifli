@@ -1,0 +1,6 @@
+class NewsModel{
+    constructor(){
+
+    }
+    
+}

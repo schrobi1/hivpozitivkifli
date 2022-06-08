@@ -1,8 +1,12 @@
 <?php
     $db = new Service();
-    $News = $db->GetMainPageNews();
+    $News = $db->GetTopicNews($_GET['page']);
 
     echo '<main>';
+
+    if (empty($News)) {
+        echo '<h1>Nincs ebben a témában hír!</h1>';
+    }
 
     foreach($News as &$New) {
         echo '
@@ -11,7 +15,7 @@
         ' . $New["ShortPost"] . '
         </p>
             <div class="CikkLink">
-                <a href="" name="' . $New["id"] . '">Részletek</a>
+                <a href="" name=' . $New["id"] . '">Részletek</a>
             </div>
         <div class="csik"></div>
         ';

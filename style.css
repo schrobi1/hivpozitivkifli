@@ -201,3 +201,28 @@ footer h2 {
 	width: 80px;
 	object-fit: cover;
 }
+
+
+main .kin{
+    display: block;
+    background-color: rgb(75, 233, 96);
+    position: absolute;
+    border: 3px solid #3f3f3f;
+    top: 30%;
+      left: 30%;
+      width: 50%;
+      height: 30%;
+    margin: 5px;
+    text-align: center;
+    opacity:1;
+}
+
+main .ben{
+    display: block;
+    background-color: rgb(102, 233, 62);
+    padding: 10px;
+    margin-top: 10px;
+    border: 3px solid #3f3f3f;
+    opacity:1;
+
+}

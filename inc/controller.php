@@ -1,6 +1,5 @@
 <?php
     ini_set('display_errors', 0);
-    require_once 'DbService/Service.php';
 
 	$response = array();
 
@@ -9,6 +8,7 @@
             case 0: Login(); break;
             case 1: Logout(); break;
             case 2: Registration(); break;
+            case 3: GetNews(); break;
 
             default: Error("Invalid request: 'type'=" . $_POST['type'] . " does not exist."); break;
         }
@@ -35,7 +35,7 @@
                 $response['error'] = false;
                 $response['data'] = "Sikeres bejelentkezés!";
                 $_SESSION["LoggedIn"] = true;
-                $_SESSION["User"] = $_POST['Email'];
+                $_SESSION["User"] = $_POST['username'];
             }
         }
     }
@@ -62,6 +62,22 @@
         session_destroy ();
         $response['error'] = false;
         $response['data'] = "Sikeres kijelentkezés!";
+    }
+
+    function GetNews() {
+        global $response;
+        $db = new Service();
+        
+        if (IsSetAllParameter(array("id"))) {
+			$news = $db->GetNewsById($_POST['id']);
+            if (empty($news)) {
+                $response['error'] = true;
+                $response['data'] = "Hír nem található!";
+            } else {
+                $response['error'] = false;
+                $response['data'] = $news;
+            }
+        }
     }
 
     function IsSetAllParameter($Parameters) {

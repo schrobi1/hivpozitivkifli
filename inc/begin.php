@@ -13,7 +13,14 @@
 						<?php PrintMenu(); ?>
 					</ul>
 				</nav>
-				<button class="btn">Bejelentkezés</button>
+				<?php
+					if ($_SESSION["LoggedIn"]) {
+						echo '<button class="btn">' . $_SESSION["User"] . '</button>';
+					} else {
+						echo '<button class="btn">Bejelentkezés</button>';
+					}
+				?>
+				
 				<div class="dropdown">
 					<button class="dropbtn"><img src="Ikonok\hamburger_button.png"></button>
 					<div class="dropdown-content">
