@@ -1,7 +1,6 @@
-var aM = new AblakModel();
+
 var ns = new News();
 var lv = new LoginView();
-var nM = new NewsModel();
 login();
 
 /*lv.addCikk(cikk =>
@@ -11,6 +10,13 @@ login();
 //var cikk = aM.getCikk();
 //ns.beolvas(cikk);
 hirek();
+
+if (document.getElementById("logoutButton") != null) {
+    document.getElementById("logoutButton").onclick = function(evt){
+        evt.preventDefault();
+        sendReqest({type: 1}, (Data) => { location.reload();});
+    }
+}
 
 function login(){
     var login = document.querySelector('.btn');
@@ -26,6 +32,17 @@ function login(){
    
 }
 
+/*function logout(){
+    var logout = document.querySelector('.logout');
+
+    logout.onclick = function(evt){
+     evt.preventDefault();
+     sendReqest({type:1})
+   }
+   
+   
+}*/
+
 function LoginClick() {
     var email = document.querySelector('#Username').value;
     var password = document.querySelector('#password').value;
@@ -36,11 +53,56 @@ function LoginClick() {
 function LoginCallback(Data) {
     var dataArray = JSON.parse(Data);
     if (dataArray.error) {
-        alert(dataArray.data)
+        alert(dataArray.data);
     } else {
         location.reload();
     }
         
+}
+
+function registerClick(){
+    var username = document.querySelector('#rusername').value;
+    var password = document.querySelector('#rpassword').value;
+    var copassword = document.querySelector('#copassword').value;
+    var email = document.querySelector('#email').value;
+    var coemail = document.querySelector('#coemail').value;
+    var eula = document.getElementById('1check').checked;
+
+    if( username !=""  && password != "" && email != ""){
+        if(password == copassword){
+            if(email == coemail){
+                if(eula){
+                    sendReqest({type: 2, Email: email, Password: password, Username: username}, RegistCallback);
+                } else {
+                    alert("Fogadja el az EULA-t")
+                }
+
+            }else {
+                alert("A két email cím nem egyezik meg")
+            }
+
+        } else {
+            alert("A két jelszó nem egyezik meg")
+        }
+    }else {
+        alert("Töltse ki a felhasználónevét, jelszavát és emailjét")
+    }
+
+
+   
+
+    
+}
+
+function RegistCallback(Data) {
+
+    var dataArray = JSON.parse(Data);
+    if (dataArray.error) {
+        alert(dataArray.data)
+    } else {
+        location.reload();
+    
+    }
 }
 
 function close(){
@@ -115,13 +177,15 @@ function register(){
 
     regist.onclick = function(evt){
          evt.preventDefault();
-         lv.register();
+         lv.register(registerClick);
 
          
          close();
     }
                
 }
+
+
         
 
 

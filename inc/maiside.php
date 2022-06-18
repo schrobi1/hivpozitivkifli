@@ -1,6 +1,28 @@
 <div class="maiside">
     <?php
-        if(isset($_GET['page'])) {
+        if(isset($_GET['mode'])) {
+            if ($_GET['mode'] == "editing") {
+                $file = "pages/page-editing.php";
+                if(is_file($file)) {
+                    include $file;
+                }
+            }else if ($_GET['mode'] == "create") {
+                $file = "pages/page-create.php";
+                if(is_file($file)) {
+                    include $file;
+                }
+            } else if ($_GET['mode'] == "datas") {
+                $file = "pages/page-datas.php";
+                if(is_file($file)) {
+                    include $file;
+                }
+            } else {          
+                $file = "pages/page-home.php";
+                if(is_file($file)) {
+                    include $file;
+                }
+            }
+        } else if(isset($_GET['page'])) {
             $file = "pages/page-bytopic.php";        
             if(is_file($file)) {
                 include $file;

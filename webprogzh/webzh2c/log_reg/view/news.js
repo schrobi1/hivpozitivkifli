@@ -1,7 +1,7 @@
 class News
 {
-    #container =  document.querySelector('main .hir');
-    #containerhir =  document.querySelector('main .inside');
+    #container =  document.querySelector('#main .hir');
+    #containerhir =  document.querySelector('#main .inside');
 
         
     constructor()
@@ -26,34 +26,29 @@ class News
         this.#container.innerHTML = html;*/
         
     }
-    
-    reszlet(cikkJSON){
-        var cim = "";
-        var szov = "";
-        var author = "";
-        var topc = "";
-        var datum = "";
+    beolvas(cikk){
+        var html = "";
+        for(var c = 0 ; c < cikk.length ; c++){
+            var cim = cikk[c].cim;
+            var szov = cikk[c].szov;
+            console.log(cim);
 
-        var cikk = JSON.parse(cikkJSON);
 
-        if (cikk.error) {
-            cim = "Hiba történt:";
-            szov = cikk.data;
-        } else {
-            cim = cikk.data.newsName;
-            szov = cikk.data.Post;
-            author = cikk.data.pubname
-            topc = cikk.data.topik
-            datum = cikk.data.datum
-        }
-
-       
         
-        //keszito, topic
+        html += this.#NewsBasic(cim,szov);
+    }
+        this.#container.innerHTML = html;
+
+    }
+    
+    reszlet(x,cikk){
+        
+        var cim = cikk[x].cim;
+        var szov = cikk[x].szov;
 
 
 
-        var ahir =this.#openNews(cim, szov, author, datum);
+        var ahir =this.#openNews(cim, szov);
         this.#containerhir.innerHTML = ahir;
 
     }
@@ -66,7 +61,6 @@ class News
         <p>
         ${szov}
         </p>
-        
         <div class="pics">
             <img src="Ikonok/main01.gif">
             <img src="Ikonok/main11.gif">
@@ -76,17 +70,14 @@ class News
             </div>
         <div class="csik"></div>`;
     }
-    #openNews(cim,szov,szer, datum){
+    #openNews(cim,szov){
         return `
         <div id="tart">
         <div class="kin">
         <h2>${cim}</h2>
-       
-        <p>Szerző: ${szer}
-        ${datum}</p>
+        <button class="X">X</button>
         <div class="ben">
         <p>
-        <button class="X">X</button>
             ${szov}
         </p>
         <div class="pics">
@@ -95,6 +86,12 @@ class News
             </div>
         </div>
         </div>
+        <style>
+        .hir, header, footer, aside {
+          opacity:0.5;
+      }
+      
+      </style>
       </div>`
     }
 }

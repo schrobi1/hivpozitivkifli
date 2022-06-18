@@ -26,10 +26,12 @@
             </li>
         </ul>
     </div>
-    <script src="log_reg/Jquery/jquery-3.6.0.min.js"></script>
-    <script src="log_reg/view/news.js"></script>
-    <script src="log_reg/view/loginView.js"></script>
-    <script src="log_reg/script.js"></script>
 </footer>
+
+<script src="log_reg/view/news.js"></script>
+<script src="log_reg/view/loginView.js"></script>
+<script src="log_reg/model/ablakModel.js"></script>
+<script src="log_reg/model/newsModel.js"></script>
+<script src="log_reg/script.js"></script>
 </body>
 </html>

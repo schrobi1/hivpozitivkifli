@@ -14,23 +14,40 @@
 					</ul>
 				</nav>
 				<?php
-					if ($_SESSION["LoggedIn"]) {
+
+					if(isset($_SESSION["LoggedIn"]) && $_SESSION["LoggedIn"]){
 						echo '<button class="btn">' . $_SESSION["User"] . '</button>';
 					} else {
 						echo '<button class="btn">Bejelentkezés</button>';
 					}
 				?>
 				
-				<div class="dropdown">
-					<button class="dropbtn"><img src="Ikonok\hamburger_button.png"></button>
-					<div class="dropdown-content">
-						<a href="#">Felhasználónév</a>
-						<a href="#">Jelszó módosítás</a>
-						<a href="#">Szerkesztő mód</a>
-						<a href="#">Publikációs név</a>
-						<a href="#">Profilkép szerkesztése</a>
-						<a href="#">Másodlagos e-mail cím</a>
-					</div>
-				</div>
+				<?php
+					if (isset($_SESSION["LoggedIn"]) && $_SESSION["LoggedIn"]){
+						if ($_SESSION["Level"] == 1) {
+							echo '<div class="dropdown">
+							<button class="dropbtn"><img src="Ikonok\hamburger_button.png"></button>
+							<div class="dropdown-content">
+								<a href="index.php?mode=datas">Adatmódósítás</a>
+								<a href="index.php?mode=create">Cikk írás</a>
+								<a href="index.php?mode=editing">Cikkek szerkesztése</a>
+								
+								<a id="logoutButton">Kilépés</a>
+							</div>
+						</div>';
+						} else {
+							echo '<div class="dropdown">
+							<button class="dropbtn"><img src="Ikonok\hamburger_button.png"></button>
+							<div class="dropdown-content">
+								<a href="index.php?mode=datas">Adatmódósítás</a>
+								
+								<a id="logoutButton">Kilépés</a>
+							</div>
+						</div>';
+						}
+					}
+				?>
+
+				
 			</div>
 		</header>

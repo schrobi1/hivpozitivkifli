@@ -89,5 +89,49 @@
 				return 0;
 			}
 		}
+
+		function ChangeUsername($Username, $Id){
+			$stmt = $this->con->prepare("UPDATE `users` SET `username`=? WHERE `id` = ?;");
+			$stmt->bind_param("si", $Username,$Id);
+			$Error = !$stmt->execute();
+			if ($Error) {
+				return $stmt->error;
+			} else {
+				return 0;
+			}
+		}
+
+		function ChangePassword($Pass, $Id){
+			$stmt = $this->con->prepare("UPDATE `users` SET `pwd`=? WHERE `id` = ?;");
+			$stmt->bind_param("si", $Pass,$Id);
+			$Error = !$stmt->execute();
+			if ($Error) {
+				return $stmt->error;
+			} else {
+				return 0;
+			}
+		}
+
+		function ChangePubname($Pubname, $Id){
+			$stmt = $this->con->prepare("UPDATE `users` SET `pubname`=? WHERE `id` = ?;");
+			$stmt->bind_param("si", $Pubname,$Id);
+			$Error = !$stmt->execute();
+			if ($Error) {
+				return $stmt->error;
+			} else {
+				return 0;
+			}
+		}
+
+		function CreateNews($Userid, $Newname, $topicName, $ShortPost,$Post,$datum){
+			$stmt = $this->con->prepare("INSERT INTO `news`(`userId`, `newsName`, `topicName`, `ShortPost`, `Post`, `datum`) VALUES (?,?,?,?,?,?);");
+			$stmt->bind_param("isssss", $Userid, $Newname, $topicName, $ShortPost,$Post,$datum);
+			$Error = !$stmt->execute();
+			if ($Error) {
+				return $stmt->error;
+			} else {
+				return 0;
+			}
+		}
     }
 ?>
