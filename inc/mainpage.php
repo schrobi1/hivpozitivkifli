@@ -150,12 +150,12 @@
                             $News = $db->Getfirst4ByTopic($Topic["topicName"]);
                             echo '
                                 <div class="accordion-item">
-                                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                <h2 class="accordion-header" id="' . $Topic["topicName"] . '_accordionHeader">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#' . $Topic["topicName"] . '_accordionCollapse" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                                     ' . $Topic["topicName"] . '
                                 </button>
                                 </h2>
-                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                                <div id="' . $Topic["topicName"] . '_accordionCollapse" class="accordion-collapse collapse show" aria-labelledby="' . $Topic["topicName"] . '_accordionHeader">
                                 <div class="accordion-body">
                                 <ul class="list-group list-group-flush">
                             ';
