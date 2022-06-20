@@ -1,7 +1,7 @@
 <?php
 
 
-    session_start();
+session_start();
 	mb_internal_encoding("UTF-8");
    // session_destroy();
     
@@ -10,6 +10,9 @@
     if ($_SERVER['REQUEST_METHOD']=='POST') {
         include "inc/controller.php";
     } else {
-        include "inc/mainpage.php";
+        include "inc/functions.php";
+        include "inc/begin.php";
+        include "inc/maiside.php";
+        include "inc/end.php";
     }
 ?>		

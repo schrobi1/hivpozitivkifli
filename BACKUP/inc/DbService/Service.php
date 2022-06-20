@@ -22,7 +22,7 @@
 		}
 
 		function GetMainPageNews(){
-			$stmt = $this->con->prepare("SELECT `id`, `newsName`, `topicName`, `ShortPost` FROM `news` WHERE 1 ORDER BY `id` DESC LIMIT 10;");
+			$stmt = $this->con->prepare("SELECT `id`, `newsName`, `topicName`, `ShortPost` FROM `news` WHERE 1 ORDER BY `id` DESC LIMIT 5;");
 			$stmt->execute();
 			$array = $stmt->get_result();
 			$dbdata = array();
@@ -45,7 +45,7 @@
 		}
 
 		function GetTopics(){
-			$stmt = $this->con->prepare("SELECT `topicName`, MAX(`id`) as 'maxid' FROM `news` WHERE 1 GROUP BY `topicName` ORDER BY `maxid` DESC LIMIT 3;");
+			$stmt = $this->con->prepare("SELECT `topicName` FROM `news` WHERE 1 GROUP BY `topicName` ORDER BY `id` DESC LIMIT 4;");
 			$stmt->execute();
 			$array = $stmt->get_result();
 			$dbdata = array();
@@ -55,8 +55,8 @@
 		    return $dbdata;
 		}
 
-		function Getfirst4ByTopic($Topic){
-			$stmt = $this->con->prepare("SELECT `id`, `newsName` FROM `news` WHERE `topicName` = ? ORDER BY `id` DESC LIMIT 4;");
+		function Getfirst2ByTopic($Topic){
+			$stmt = $this->con->prepare("SELECT `id`, `newsName` FROM `news` WHERE `topicName` = ? ORDER BY `id` DESC LIMIT 2;");
 			$stmt->bind_param("s", $Topic);
 			$stmt->execute();
 			$array = $stmt->get_result();
@@ -81,7 +81,7 @@
 
 		function InsertUser($Email, $Psw, $Username, $PubName, $Level, $Eula){
 			$stmt = $this->con->prepare("INSERT INTO `users`(`pwd`, `email`, `username`, `pubname`, `level`, `eula`) VALUES (?,?,?,?,?,?);");
-			$stmt->bind_param("ssssis", $Psw, $Email,$Username, $PubName, $Level, $Eula);
+			$stmt->bind_param("ssssii", $Psw, $Email,$Username, $PubName, $Level, $Eula);
 			$Error = !$stmt->execute();
 			if ($Error) {
 				return $stmt->error;
@@ -126,51 +126,6 @@
 		function CreateNews($Userid, $Newname, $topicName, $ShortPost,$Post,$datum){
 			$stmt = $this->con->prepare("INSERT INTO `news`(`userId`, `newsName`, `topicName`, `ShortPost`, `Post`, `datum`) VALUES (?,?,?,?,?,?);");
 			$stmt->bind_param("isssss", $Userid, $Newname, $topicName, $ShortPost,$Post,$datum);
-			$Error = !$stmt->execute();
-			if ($Error) {
-				return $stmt->error;
-			} else {
-				return 0;
-			}
-		}
-
-		function CreateComment($NewsId, $UserId, $Comment){
-			$stmt = $this->con->prepare("INSERT INTO `comment`(`newId`, `userId`, `txt`) VALUES (?,?,?);");
-			$stmt->bind_param("iis", $NewsId, $UserId, $Comment);
-			$Error = !$stmt->execute();
-			if ($Error) {
-				return $stmt->error;
-			} else {
-				return 0;
-			}
-		}
-
-		function GetCommentsByNewsId($Id){
-			$stmt = $this->con->prepare("SELECT `comment`.*, `users`.`username` FROM `comment` INNER JOIN `users` ON `users`.`id` = `comment`.`userId` WHERE `newId` = ?;");
-			$stmt->bind_param("i", $Id);
-			$stmt->execute();
-			$array = $stmt->get_result();
-			$dbdata = array();
-			while ( $row = $array->fetch_assoc())  {
-				$dbdata[]=$row;
-            }
-		    return $dbdata;
-		}
-
-		function GetUsers(){
-			$stmt = $this->con->prepare("SELECT `id`,`username`, `level`, `email` FROM `users` WHERE 1;");
-			$stmt->execute();
-			$array = $stmt->get_result();
-			$dbdata = array();
-			while ( $row = $array->fetch_assoc())  {
-				$dbdata[]=$row;
-            }
-		    return $dbdata;
-		}
-
-		function SetPermLevel($UserId, $Level){
-			$stmt = $this->con->prepare("UPDATE `users` SET `level`=? WHERE `id` = ?;");
-			$stmt->bind_param("ii", $Level, $UserId);
 			$Error = !$stmt->execute();
 			if ($Error) {
 				return $stmt->error;
